@@ -1,4 +1,5 @@
 CupcakePHP
-==========
+=======
+The Rapid and Tasty Development Framework.
 
-Cupcake is a autoRouter and autoRender microFramework based on the Symfony2 Components.
+(c) CupcakePHP is a autoRouter and autoRender microFramework based on the Symfony2 Components.

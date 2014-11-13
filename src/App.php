@@ -23,11 +23,11 @@ use Symfony\Component\HttpFoundation\Request as Request;
 class App
 {
 
-    var $app;
+    public $app;
 
     public function __construct()
     {
-        $this->app = new Silex\Application();
+        $this->app = new \Silex\Application();
     }
 
 
@@ -36,11 +36,12 @@ class App
 	 */
 	public function run()
 	{
-		$this->app->match('{url}', function(Request $request) use ($app) {
+		$app = $this->app;
+		$app->match('{url}', function(Request $request) use ($app) {
 		    return $app['Simplesys']->run($request);
 		})->assert('url', '.+|');
 
-		$this->app->run();
+		$app->run();
 	}
 }
 

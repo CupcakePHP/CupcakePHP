@@ -10,7 +10,7 @@
  * @link      http://cupcake.simplesys.com.br
  */
  
-namespace CupcakePHP;
+namespace Cupcake;
 
 /**
  * Cupcake is a autoRouter and autoRender microFramework based on the Symfony2 Components.
@@ -19,7 +19,7 @@ namespace CupcakePHP;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
-class CupcakePHP
+class Cupcake
 {
 
 	/**

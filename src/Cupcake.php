@@ -19,7 +19,7 @@ namespace Cupcake;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
-class Cupcake
+class App
 {
 
 	/**

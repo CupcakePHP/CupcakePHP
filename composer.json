@@ -13,6 +13,7 @@
         }
 	],
 	"require" : {
+		"silex/silex": "~1.1",
 		"symfony/filesystem": "~2.5"
 	},
 	"require-dev": {

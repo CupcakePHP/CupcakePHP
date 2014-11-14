@@ -16,9 +16,11 @@ namespace Cupcake;
  * Cupcake is a autoRouter and autoRender microFramework based on the Symfony2 Components.
  * Controllers, actions and views automatic executed by the url path.
  */
-//use Symfony\Component\Filesystem\Filesystem;
-//use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\HttpFoundation\Request as Request;
+use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
+
+@header('Content-Type: text/html; charset=utf-8');
+define('DS', DIRECTORY_SEPARATOR);
 
 class App
 {
@@ -27,22 +29,38 @@ class App
 
     public function __construct()
     {
-        $this->app = new \Silex\Application();
+        $this->app = new Application();
+
+        if (getenv('AMBIENT') === false) {
+            putenv('AMBIENT=development');
+            $this->app['debug'] = true;
+        }
+
+        $this->app['Vars'] = $this->app->share(function () { return new Vars(); });
+        $this->app['config'] = function () { return Config::load(); };
+        $this->app['route'] = function () { return Config::route(); };
+        $this->app['Request'] = function () { return new Request(); };
+
+        $app = $this->app;
+        $app->match('{url}', function(Request $request) use ($app) {
+            $AutoRouter = new AutoRouter($app['route'], $app['config'], substr($request->getPathInfo(), 1));
+            $route = $AutoRouter->route();
+            $config = $AutoRouter->config();
+
+            return $this->render($route, $config);
+
+        })->assert('url', '.+|');
+
+        $app->run();
     }
 
-
-    /**
-	 * Run the Framework and do all the magic.
-	 */
-	public function run()
+    public function render($route, $confitg)
 	{
-		$app = $this->app;
-		$app->match('{url}', function(Request $request) use ($app) {
-		    return $app['Simplesys']->run($request);
-		})->assert('url', '.+|');
+	    return 'Too Fake';
 
-		$app->run();
 	}
+
+
 }
 
 ?>

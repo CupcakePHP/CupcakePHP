@@ -40,12 +40,19 @@ class AutoRouter
     {
         $this->defineAppName();
         $this->defineController();
-        var_dump($this->route);
-        var_dump($this->config);
-        var_dump($this->url);
-        // $this->defineAction();
-        // $this->defineArguments();
-        // $this->defineView();
+        $this->defineAction();
+        $this->defineArguments();
+        $this->defineView();
+
+        return $this->route;
+
+    }
+
+
+    public function config()
+    {
+    	return $this->config;
+
     }
 
 
@@ -56,17 +63,17 @@ class AutoRouter
     {
         if ($this->fs->exists($this->route['appsFolder'] . DS . ucfirst($this->urlToCamel($this->url[0]))) === true) {
             $this->route['appName'] = ucfirst($this->urlToCamel($this->url[0]));
-            $this->uniConfigs();
-            $this->tiraUmDaUrl();
+            $this->mergeConfigs();
+            $this->shiftUrl();
         }
 
     }
 
 
-    public function uniConfigs()
+    public function mergeConfigs()
     {
-        if ($this->fs->exists($this->route['appsFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . DS . 'Config.php') === true) {
-            $path = 'CupcakeApp\Apps\\' . ucfirst($this->urlToCamel($this->url[0])) . '\Config';
+        if ($this->fs->exists($this->route['appsFolder'] . DS . $this->route['appName'] . DS . 'Config.php') === true) {
+            $path = 'CupcakeApp\\' . $this->route['appsFolder'] . '\\' . ucfirst($this->urlToCamel($this->url[0])) . '\Config';
 
             $configApp = $path::load();
             $this->config = array_merge($this->config, (isset($configApp['default'])) ? $configApp['default'] : array(), (isset($configApp[getenv('AMBIENT')]) === true) ? $configApp[getenv('AMBIENT')] : array());
@@ -79,7 +86,7 @@ class AutoRouter
     /**
      * Tira a primeira parte da url
      */
-    public function tiraUmDaUrl()
+    public function shiftUrl()
     {
         unset($this->url[0]);
         $this->url = array_values($this->url);
@@ -95,11 +102,9 @@ class AutoRouter
      */
     public function defineController()
     {
-        $this->controller = $this->cliApp;
-        $appController = str_replace('Index', ucfirst($this->url[0]), $this->cliApp);
-        if (class_exists($appController) === true) {
-            $this->controller = $appController;
-            $this->tiraUmDaUrl();
+    	if ($this->fs->exists($this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['controllerFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . '.php') === true) {
+    		$this->route['controller'] = ucfirst($this->urlToCamel($this->url[0]));
+            $this->shiftUrl();
         }
 
     }
@@ -110,11 +115,10 @@ class AutoRouter
      */
     public function defineAction()
     {
-        $this->action = $this->app['config']['actionPadrao'];
-        if (method_exists($this->controller, $this->urlToCamel($this->url[0])) === true) {
-            $this->action = $this->url[0];
-            $this->tiraUmDaUrl();
-        }
+    	if (method_exists('CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['controllerFolder'] . '\\' . $this->route['controller'], $this->urlToCamel($this->url[0])) === true) {
+			$this->route['action'] = $this->urlToCamel($this->url[0]);
+			$this->shiftUrl();
+         }
 
     }
 
@@ -124,7 +128,7 @@ class AutoRouter
      */
     public function defineArguments()
     {
-        $this->arguments = $this->url;
+        $this->route['arguments'] = $this->url;
 
     }
 
@@ -134,9 +138,7 @@ class AutoRouter
      */
     public function defineView()
     {
-        $this->layout = $this->app['config']['layout'];
-        $this->viewFolder = substr($this->controller, (strrpos($this->controller, '\\') + 1));
-        $this->view = $this->action;
+		$this->route['view'] = $this->route['controller'] . DS . $this->route['action'] . '.' . $this->route['extensionView'];
 
     }
 

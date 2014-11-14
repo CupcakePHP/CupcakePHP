@@ -46,10 +46,15 @@ class Config
                 'appName' => 'Cupcake',
                 'controller' => 'index',
                 'action' => 'home',
+        		'arguments' => array(),
                 'appsFolder' => 'Apps',
+                'controllerFolder' => 'Controller',
                 'viewFolder' => 'View',
                 'layoutFolder' => 'Layout',
-                'webFolder' => 'Web'
+                'webFolder' => 'Web',
+        		'layout' => 'charisma',
+        		'extensionView' => 'phtml',
+        		'view' => 'Index' . DS . 'home.html'
         ), $cupcakeAppConfig['route']);
 
     }

@@ -54,7 +54,8 @@ class Config
                 'webFolder' => 'Web',
         		'layout' => 'charisma',
         		'extensionView' => 'phtml',
-        		'view' => 'Index' . DS . 'home.html'
+        		'view' => 'Index' . DS . 'home.html',
+                'twig' => true
         ), $cupcakeAppConfig['route']);
 
     }

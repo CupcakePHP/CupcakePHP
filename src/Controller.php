@@ -20,7 +20,7 @@ class Controller
     public $request;
 
 
-    public function __construct(Application $app, Request $request)
+    public function __construct($app, $request)
     {
         $this->app = $app;
         $this->request = $request;

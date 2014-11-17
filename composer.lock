@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "39d27c174452b8e6898e20d34ef7cd6e",
+    "hash": "a5834e15bcdd93fe59531b36628970cc",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -178,54 +178,6 @@
             "time": "2014-10-12 12:14:54"
         },
         {
-            "name": "symfony/config",
-            "version": "2.7.x-dev",
-            "target-dir": "Symfony/Component/Config",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Config.git",
-                "reference": "58c3501c92b2eceed6c5554140143a8b7e874c94"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/58c3501c92b2eceed6c5554140143a8b7e874c94",
-                "reference": "58c3501c92b2eceed6c5554140143a8b7e874c94",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/filesystem": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Config\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Config Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-11-10 18:00:54"
-        },
-        {
             "name": "symfony/debug",
             "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Debug",
@@ -345,12 +297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "d369d79337045fdcb2c47d1cacc128367bd18b98"
+                "reference": "5bbd9f52cd5ebf7ea85f447b779fcfa8a25a95e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/d369d79337045fdcb2c47d1cacc128367bd18b98",
-                "reference": "d369d79337045fdcb2c47d1cacc128367bd18b98",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/5bbd9f52cd5ebf7ea85f447b779fcfa8a25a95e7",
+                "reference": "5bbd9f52cd5ebf7ea85f447b779fcfa8a25a95e7",
                 "shasum": ""
             },
             "require": {
@@ -383,7 +335,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2014-11-10 18:00:54"
+            "time": "2014-11-16 17:28:20"
         },
         {
             "name": "symfony/http-foundation",
@@ -392,12 +344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "a2e4462906aee2588a975ddcce43c9f3b468e7c1"
+                "reference": "84050984c3f3559d4fccb51e48469d598798460a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/a2e4462906aee2588a975ddcce43c9f3b468e7c1",
-                "reference": "a2e4462906aee2588a975ddcce43c9f3b468e7c1",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/84050984c3f3559d4fccb51e48469d598798460a",
+                "reference": "84050984c3f3559d4fccb51e48469d598798460a",
                 "shasum": ""
             },
             "require": {
@@ -436,7 +388,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-11-03 03:54:42"
+            "time": "2014-11-16 17:37:01"
         },
         {
             "name": "symfony/http-kernel",
@@ -445,12 +397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "4ba77e44fb38a1e5531516a0e29d84157f63b5d6"
+                "reference": "0feb1d2117e79666628ecf6f60ecb3ecb18eca30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/4ba77e44fb38a1e5531516a0e29d84157f63b5d6",
-                "reference": "4ba77e44fb38a1e5531516a0e29d84157f63b5d6",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/0feb1d2117e79666628ecf6f60ecb3ecb18eca30",
+                "reference": "0feb1d2117e79666628ecf6f60ecb3ecb18eca30",
                 "shasum": ""
             },
             "require": {
@@ -508,7 +460,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-11-12 08:14:41"
+            "time": "2014-11-16 17:33:21"
         },
         {
             "name": "symfony/routing",
@@ -1015,12 +967,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "6f67d2ae044ba17ba30573941f4ac96c4777be97"
+                "reference": "c484a80f97573ab934e37826dba0135a3301b26a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/6f67d2ae044ba17ba30573941f4ac96c4777be97",
-                "reference": "6f67d2ae044ba17ba30573941f4ac96c4777be97",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/c484a80f97573ab934e37826dba0135a3301b26a",
+                "reference": "c484a80f97573ab934e37826dba0135a3301b26a",
                 "shasum": ""
             },
             "require": {
@@ -1071,7 +1023,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2014-10-21 10:04:18"
+            "time": "2014-11-16 21:32:38"
         },
         {
             "name": "sebastian/diff",

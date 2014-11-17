@@ -43,20 +43,46 @@ class App
 
         $app = $this->app;
         $app->match('{url}', function(Request $request) use ($app) {
-            $AutoRouter = new AutoRouter($app['route'], $app['config'], substr($request->getPathInfo(), 1));
-            $route = $AutoRouter->route();
-            $config = $AutoRouter->config();
+            $app['GPS'] = function () use ($app, $request) { return new GPS($app['route'], $app['config'], substr($request->getPathInfo(), 1)); };
+            $route = $app['GPS']->route();
+            $config = $app['GPS']->config();
 
-            return $this->render($route, $config);
+            return $this->run($app, $request, $route, $config);
 
         })->assert('url', '.+|');
 
         $app->run();
     }
 
-    public function render($route, $confitg)
+
+    public function run($app, $request, $route, $config)
+    {
+        $controllerPath = 'CupcakeApp\\' . $route['appsFolder'] . '\\' . $route['appName'] . '\\' . $route['controllerFolder'] . '\\' . $route['controller'];
+        $controller = new $controllerPath($app, $request);
+        $controller->setConfig($config);
+        $controller->setRoute($route);
+
+        $action = $route['action'];
+        $cliRender = $controller->$action();
+
+        return $this->render($cliRender, $controller->app['Vars']->vars);
+
+    }
+
+    public function render($cliRender, $vars)
 	{
-	    return 'Too Fake';
+	    if($cliRender !== null) {
+	        return $cliRender;
+	    }
+	    else {
+	        set_include_path(get_include_path().PATH_SEPARATOR.'Apps\Syscacambas\View');
+
+	        ob_start();
+    	    extract($vars);
+	        require $vars['route']['view'];
+	        return ob_get_clean();
+
+	    }
 
 	}
 

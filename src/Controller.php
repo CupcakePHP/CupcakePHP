@@ -17,13 +17,23 @@ class Controller
 
     public $app;
 
-    public $request;
+    public $layout = null;
 
 
-    public function __construct($app, $request)
+    public function __construct($app)
     {
         $this->app = $app;
-        $this->request = $request;
+
+        if($this->layout === null) {
+            $this->layout = $app['route']['layout'];
+        }
+
+        $this->setWeb('//' . $this->app['request']->getHost() . $this->app['request']->getBasePath() . '/' . $this->app['route']['webFolder'] . '/');
+        $url = '//' . $this->app['request']->getHost() . $this->app['request']->getBasePath() . '/';
+        $this->setUrl($url);
+        $this->setIndex($url . $this->app['route']['appName'] . '/');
+        $this->setIndexController($url . $this->app['route']['appName'] . '/' . $this->app['route']['controller'] . '/');
+        $this->setAqui($this->app['request']->getPathInfo());
 
     }
 
@@ -50,19 +60,52 @@ class Controller
     }
 
 
-    public function render()
+    public function render($content = null)
     {
-        $app = substr(str_replace('App', 'Apps', str_replace('Controller\Index', '', $this->app['Simplesys']->cliApp)), 1);
-        $controller = substr($this->app['Simplesys']->controller, (strrpos($this->app['Simplesys']->controller, '\\') + 1));
+        $this->setV($this->app['Vars']);
+        $this->app['GPS']->addIncludePaths();
 
-        $this->app['twig.loader.filesystem']->addPath($app . 'View\\' .  $controller);
-        $this->app['Vars']->setContent($this->app['Simplesys']->action);
+        if ($this->layout !== false) {
+            if ($content === null) {
+                $content = $this->getView();
+            }
 
-        return $this->app['twig']->render('Layout\\' . $this->app['config']['layout'] . '.phtml', $this->app['Vars']->get());
+            $this->setContent($content);
+            return $this->getLayout();
+        } else {
+            if ($content !== null) {
+                return $content;
+            } else {
+                return $this->getView();
+            }
+        }
 
     }
 
 
+    public function getView()
+    {
+        ob_start();
+        extract($this->app['Vars']->vars);
+        require $this->app['route']['view'];
+        return ob_get_clean();
+    }
+
+
+    public function getLayout()
+    {
+        $layoutClassName = $this->app['GPS']->getLayoutClassName(ucfirst($this->layout));
+
+        $Layout = new $layoutClassName($this->app);
+        $Layout->index();
+
+        ob_start();
+        extract($Layout->app['Vars']->vars);
+        $layoutViewFile = $this->app['GPS']->getLayoutViewFile();
+        require $layoutViewFile;
+        return ob_get_clean();
+
+    }
     /**
      * retorna nome de um metodo do tipo Action
      *
@@ -73,6 +116,34 @@ class Controller
     public function getActionName($name)
     {
         return substr($name, 1);
+
+    }
+
+
+    public function useComponent($component)
+    {
+        ob_start();
+        $componentClassName = $this->app['GPS']->getComponentClassName($component);
+        if ($componentClassName !== false) {
+            $Component = new $componentClassName($this->app);
+            $Component->index();
+
+            extract($Component->app['Vars']->vars);
+        } else {
+            extract($this->app['Vars']->vars);
+        }
+
+        $componentViewFile = $this->app['GPS']->getComponentViewFile($component);
+        require $componentViewFile;
+        $content = ob_get_clean();
+
+        $setVar = 'set' . $component;
+        $this->$setVar($content);
+
+    }
+
+    public function home() {
+        return 'Ops, acho que não era pra vir para cá! - Faça um método home() no controller index da sua aplicação.';
 
     }
 

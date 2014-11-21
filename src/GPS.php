@@ -61,7 +61,8 @@ class GPS
      */
     public function defineAppName()
     {
-        if ($this->fs->exists($this->route['appsFolder'] . DS . ucfirst($this->urlToCamel($this->url[0]))) === true) {
+        if ($this->fs->exists($this->route['appsFolder'] . DS . ucfirst($this->urlToCamel($this->url[0]))) === true && $this->url[0] !== '') {
+
             $this->route['appName'] = ucfirst($this->urlToCamel($this->url[0]));
             $this->mergeConfigs();
             $this->shiftUrl();
@@ -139,6 +140,89 @@ class GPS
     public function defineView()
     {
 		$this->route['view'] = $this->route['controller'] . DS . $this->route['action'] . '.' . $this->route['extensionView'];
+
+    }
+
+
+    public function getControllerPath()
+    {
+        return 'CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['controllerFolder'] . '\\' . $this->route['controller'];
+    }
+
+
+    public function addIncludePaths()
+    {
+        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['layoutFolder'] . PATH_SEPARATOR . dirname(__FILE__). DS . 'Layout');
+        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['viewFolder'] . PATH_SEPARATOR . dirname(__FILE__). DS . 'View');
+
+    }
+
+
+    public function fileExists($filename)
+    {
+        $paths = explode(';', get_include_path());
+        foreach ($paths as $path) {
+            if (file_exists($path . DS . $filename) === true) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+
+    public function getLayoutClassName($layout)
+    {
+        if (class_exists('CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
+            return 'CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout;
+        } elseif (class_exists('CupcakeApp\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
+            return 'CupcakeApp\\' . $this->route['layoutFolder'] . '\\' . $layout;
+        } else {
+            return false;
+        }
+
+    }
+
+
+    public function getComponentClassName($component)
+    {
+        if (class_exists('CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $this->route['componentFolder'] . '\\' . $component) === true) {
+            return 'CupcakeApp\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $this->route['componentFolder'] . '\\' . $component;
+        } elseif (class_exists('CupcakeApp\\' . $this->route['layoutFolder'] . '\\' . $this->route['componentFolder'] . '\\' . $component) === true) {
+            return 'CupcakeApp\\' . $this->route['layoutFolder'] . '\\' . $this->route['componentFolder'] . '\\' . $component;
+        } else {
+            return false;
+        }
+
+
+    }
+
+
+    public function getComponentViewFile($component)
+    {
+        if ($this->fs->exists($this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['viewFolder'] . '\\' . $this->route['componentFolder'] . '\\' . lcfirst($component) . '.' . $this->route['extensionView']) === true) {
+            return $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['viewFolder'] . '\\' . $this->route['componentFolder'] . '\\' . lcfirst($component) . '.' . $this->route['extensionView'];
+        } elseif ($this->fs->exists($this->route['viewFolder'] . '\\' . $this->route['componentFolder'] . '\\' . lcfirst($component) . '.' . $this->route['extensionView']) === true) {
+            return $this->route['viewFolder'] . '\\' . $this->route['componentFolder'] . '\\' . lcfirst($component) . '.' . $this->route['extensionView'];
+        } else {
+            return false;
+        }
+
+
+    }
+
+
+    public function getLayoutViewFile()
+    {
+        if ($this->fs->exists($this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['viewFolder'] . '\\' . $this->route['layout'] . '.' . $this->route['extensionView']) === true) {
+            return $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['viewFolder'] . '\\' . $this->route['layout'] . '.' . $this->route['extensionView'];
+        } elseif ($this->fs->exists($this->route['viewFolder'] . '\\' . $this->route['layout'] . '.' . $this->route['extensionView']) === true) {
+            return $this->route['viewFolder'] . '\\' . $this->route['layout'] . '.' . $this->route['extensionView'];
+        } else {
+            return false;
+        }
+
 
     }
 

@@ -51,11 +51,13 @@ class Config
                 'controllerFolder' => 'Controller',
                 'viewFolder' => 'View',
                 'layoutFolder' => 'Layout',
+                'componentFolder' => 'Component',
                 'webFolder' => 'Web',
         		'layout' => 'charisma',
         		'extensionView' => 'phtml',
-        		'view' => 'Index' . DS . 'home.html',
-                'twig' => true
+        		'view' => 'Index' . DS . 'home',
+                'twig' => true,
+                'contentVar' => 'content'
         ), $cupcakeAppConfig['route']);
 
     }

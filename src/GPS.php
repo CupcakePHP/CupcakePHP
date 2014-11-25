@@ -152,8 +152,8 @@ class GPS
 
     public function addIncludePaths()
     {
-        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['layoutFolder'] . PATH_SEPARATOR . dirname(__FILE__). DS . 'Layout');
-        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['viewFolder'] . PATH_SEPARATOR . dirname(__FILE__). DS . 'View');
+        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['layoutFolder']);
+        set_include_path(get_include_path() . PATH_SEPARATOR . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['viewFolder']);
 
     }
 

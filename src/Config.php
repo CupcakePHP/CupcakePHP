@@ -21,7 +21,8 @@ class Config
     {
         $ambientConfigs = array(
                 'default' => array(
-                        'title' => '(c) CupcakePHP: The Rapid and Tasty Development Framework.'
+                        'title' => '(c) CupcakePHP: The Rapid and Tasty Development Framework.',
+                        'nomeSistema' => 'CupcakePHP'
                 ),
                 'production' => array(
                         'db' => getenv('CLEARDB_DATABASE_URL')

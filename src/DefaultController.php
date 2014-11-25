@@ -15,8 +15,9 @@ namespace Cupcake;
 use Symfony\Component\Templating\PhpEngine;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\Loader\FilesystemLoader;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultControllerController
+class DefaultController extends Controller
 {
 
     public $app;

@@ -4,19 +4,24 @@
  *
  * PHP version 5.5.12
  *
- * @author    Ge Bender <gesianbender@gmail.com>
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   GIT: <git_id>
- * @link      http://cupcake.simplesys.com.br
+ * @author  Ge Bender <gesianbender@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @version GIT: <git_id>
+ * @link    http://cupcake.simplesys.com.br
  */
 namespace Cupcake;
 
-use CupcakeApp;
+use Apps;
 
 class Config
 {
 
 
+    /**
+     * Entrega as configurações globais do projeto
+     *
+     * @return array
+     */
     public static function load()
     {
         $ambientConfigs = array(
@@ -25,38 +30,46 @@ class Config
                         'nomeSistema' => 'CupcakePHP'
                 ),
                 'production' => array(
-                        'db' => getenv('CLEARDB_DATABASE_URL')
+                        'db' => str_replace('pdo_mysql', 'pdo-mysql', 'pdo-'.getenv('CLEARDB_DATABASE_URL'))
                 ),
                 'homolog' => array(),
+                'test' => array(),
                 'development' => array(
-                        'db' => 'mysql://root@localhost/cupcake'
+                        'db' => 'pdo-mysql://root@localhost/cupcake'
                 )
         );
 
-        $cupcakeAppConfig = CupcakeApp\Config::load();
-        return array_merge($ambientConfigs['default'], $ambientConfigs[getenv('AMBIENT')], $cupcakeAppConfig['default'], $cupcakeAppConfig[getenv('AMBIENT')]);
+         $cupcakeAppConfig = Apps\Config::load();
+         return array_merge($ambientConfigs['default'], $ambientConfigs[getenv('AMBIENT')], $cupcakeAppConfig['default'], $cupcakeAppConfig[getenv('AMBIENT')]);
 
     }
 
 
+    /**
+     * Entrega as configurações de roteamento do projeto
+     *
+     * @return array
+     */
     public static function route()
     {
-        $cupcakeAppConfig = CupcakeApp\Config::load();
+        $cupcakeAppConfig = Apps\Config::load();
 
         return array_merge(array(
                 'appName' => 'Cupcake',
-                'controller' => 'index',
+                'entity' => '',
+                'controller' => 'Cupcake\Controller',
                 'action' => 'home',
-        		'arguments' => array(),
+                'arguments' => array(),
                 'appsFolder' => 'Apps',
                 'controllerFolder' => 'Controller',
                 'viewFolder' => 'View',
                 'layoutFolder' => 'Layout',
+                'modelFolder' => 'Model',
                 'componentFolder' => 'Component',
                 'webFolder' => 'Web',
-        		'layout' => 'charisma',
-        		'extensionView' => 'phtml',
-        		'view' => 'Index' . DS . 'home',
+                'layout' => 'charisma',
+                'extensionView' => 'phtml',
+                'view' => 'Index' . DS . 'home',
                 'twig' => true,
                 'contentVar' => 'content'
         ), $cupcakeAppConfig['route']);
@@ -65,5 +78,3 @@ class Config
 
 
 }
-
-?>

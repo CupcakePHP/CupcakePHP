@@ -4,12 +4,11 @@
  *
  * PHP version 5.5.12
  *
- * @author    Ge Bender <gesianbender@gmail.com>
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   GIT: <git_id>
- * @link      http://cupcake.simplesys.com.br
+ * @author  Ge Bender <gesianbender@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @version GIT: <git_id>
+ * @link    http://cupcake.simplesys.com.br
  */
-
 namespace Cupcake;
 
 class Vars
@@ -23,6 +22,8 @@ class Vars
      *
      * @param string $name
      * @param array $arguments
+     *
+     * @return string|bool
      */
     public function __call($name, $arguments)
     {
@@ -32,13 +33,14 @@ class Vars
             return isset($this->vars[$var]);
         } else if (substr($name, 0, 3) === 'set') {
             $this->vars[$var] = $arguments[0];
+            return true;
         } else if (isset($this->vars[$var]) === true) {
             return $this->vars[$var];
         } else if (isset($this->vars[$name]) === true) {
             return $this->vars[$name];
-        } else {
-            return false;
         }
+
+        return false;
 
     }
 
@@ -61,12 +63,16 @@ class Vars
     }
 
 
+    /**
+     * Retorna todas as variáveis
+     *
+     * @return array
+     */
     public function get()
     {
         return $this->vars;
+
     }
 
 
 }
-
-?>

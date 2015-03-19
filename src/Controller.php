@@ -88,7 +88,8 @@ class Controller
             $this->setColunas(array_keys(get_class_vars($this->app['route']['entity'])));
             $this->setIcon('icon-star-empty');
         } else {
-            $controller = new \Apps\Syscacambas\Controller\IndexController($this->app);
+            $controllerPath = '\Apps\\'.$this->app['route']['appName'].'\Controller\IndexController';
+            $controller = new $controllerPath($this->app);
             $controller->home();
             $this->view = 'Index/indexHome.phtml';
         }
@@ -192,7 +193,7 @@ class Controller
     public function uses($entity)
     {
         $entityDAO = $entity . 'DAO';
-        $entityName = 'Apps\Syscacambas\DAO\\' . $entityDAO;
+        $entityName = 'Apps\\'.$controllerPath = '\Apps\\'.$this->app['route']['appName'].'\Controller\IndexController';.'\DAO\\' . $entityDAO;
         if ($this->app['FileSystem']->classExists($entityName) === true) {
             $this->$entityDAO = new $entityName($this->app);
         } else {

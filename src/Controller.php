@@ -193,7 +193,7 @@ class Controller
     public function uses($entity)
     {
         $entityDAO = $entity . 'DAO';
-        $entityName = 'Apps\\'.$controllerPath = '\Apps\\'.$this->app['route']['appName'].'\Controller\IndexController';.'\DAO\\' . $entityDAO;
+        $entityName = 'Apps\\'.$this->app['route']['appName'].'\Controller\IndexController';.'\DAO\\' . $entityDAO;
         if ($this->app['FileSystem']->classExists($entityName) === true) {
             $this->$entityDAO = new $entityName($this->app);
         } else {

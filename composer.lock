@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e603fd03d707afc276c20f1aa234371e",
+    "hash": "652e4a8a67d99b9355e680857bf5c005",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -820,31 +820,31 @@
         },
         {
             "name": "symfony/debug",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Debug",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "bdf52507e0755268dc4dc210c28d586b53b930ba"
+                "reference": "081206a6a682450c5b22d01eea23238a781dda93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/bdf52507e0755268dc4dc210c28d586b53b930ba",
-                "reference": "bdf52507e0755268dc4dc210c28d586b53b930ba",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/081206a6a682450c5b22d01eea23238a781dda93",
+                "reference": "081206a6a682450c5b22d01eea23238a781dda93",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
+                "php": ">=5.3.9",
                 "psr/log": "~1.0"
             },
             "conflict": {
                 "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
             },
             "require-dev": {
-                "symfony/class-loader": "~2.7|~3.0",
-                "symfony/http-foundation": "~2.7|~3.0",
-                "symfony/http-kernel": "~2.7|~3.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0"
+                "symfony/class-loader": "~2.2|~3.0.0",
+                "symfony/http-foundation": "~2.1|~3.0.0",
+                "symfony/http-kernel": "~2.3.24|~2.5.9|~2.6,>=2.6.2|~3.0.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "suggest": {
                 "symfony/http-foundation": "",
@@ -853,7 +853,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -877,7 +877,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-13 18:00:11"
+            "time": "2015-03-13 17:50:01"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1355,12 +1355,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "74cf128bd0f643957c076cc67121dbff445755fe"
+                "reference": "4676604b851bfc6fc02bf3394bf350c727bcebf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/74cf128bd0f643957c076cc67121dbff445755fe",
-                "reference": "74cf128bd0f643957c076cc67121dbff445755fe",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/4676604b851bfc6fc02bf3394bf350c727bcebf4",
+                "reference": "4676604b851bfc6fc02bf3394bf350c727bcebf4",
                 "shasum": ""
             },
             "require": {
@@ -1409,7 +1409,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-03-06 11:27:25"
+            "time": "2015-03-19 05:49:08"
         },
         {
             "name": "phpunit/php-file-iterator",

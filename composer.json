@@ -1,5 +1,6 @@
 {
-	"name": "cupcakephp/cupcakephp",
+    "minimum-stability": "dev",
+    "name": "cupcakephp/cupcakephp",
     "description": "CupcakePHP is a autoRouter and autoRender microFramework based on the Symfony2 Components.",
     "keywords": ["microframework", "autorouter", "autorender"],
     "homepage": "http://cupcakephp.simplesys.com.br/",

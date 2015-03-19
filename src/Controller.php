@@ -71,8 +71,7 @@ class Controller
 
         $this->DAO = $this->$DAO;
 
-        $this->loginFake();
-
+        
     }
 
 
@@ -175,21 +174,7 @@ class Controller
 
     }
 
-
-    public function loginFake()
-    {
-        $assinante = Cookies::restore('assinante');
-        if (isset($assinante) === false) {
-            $this->uses('Assinantes');
-            $assinante = $this->AssinantesDAO->find(1);
-            Cookies::save('assinante', $assinante);
-        }
-
-        $this->setAssinante($assinante);
-
-    }
-
-
+    
     public function uses($entity)
     {
         $entityDAO = $entity . 'DAO';

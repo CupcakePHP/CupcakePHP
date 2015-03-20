@@ -138,6 +138,8 @@ class GPS
     {
         if ($this->fs->exists(dirname(dirname(__FILE__)) . DS . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['controllerFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . 'Controller.php') === true) {
             $this->route['controller'] = $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['controllerFolder'] . '\\' . ucfirst($this->urlToCamel($this->url[0])) . 'Controller';
+        } else if ($this->route['appName'] === 'Cupcake') {
+         	$this->route['controller'] = 'Cupcake\Controller\IndexController';
         }
         $this->shiftUrl();
 
@@ -192,10 +194,12 @@ class GPS
      */
     public function getLayoutClassName($layout)
     {
-        if ($this->fs->classExists('Layout\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
+    	if ($this->fs->classExists('Layout\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
             return 'Layout\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout;
         } else if ($this->fs->classExists('Layout\\' . $layout) === true) {
             return 'Layout\\' . $layout;
+        } else if($this->fs->classExists('Cupcake\Layout\\' . $layout) === true) {
+        	return 'Cupcake\Layout\\' . $layout;
         } else {
             return false;
         }
@@ -236,6 +240,8 @@ class GPS
             return $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['viewFolder'] . DS . $this->route['componentFolder'] . DS . lcfirst($component) . '.' . $this->route['extensionView'];
         } else if ($this->fs->exists(dirname(dirname(__FILE__)) . DS . $this->route['viewFolder'] . DS . $this->route['componentFolder'] . DS . lcfirst($component) . '.' . $this->route['extensionView']) === true) {
             return $this->route['viewFolder'] . DS . $this->route['componentFolder'] . DS . lcfirst($component) . '.' . $this->route['extensionView'];
+        } else if ($this->fs->exists(dirname(__FILE__) . DS . $this->route['viewFolder'] . DS . $this->route['componentFolder'] . DS . lcfirst($component) . '.' . $this->route['extensionView']) === true) {
+        	return $this->route['viewFolder'] . DS . $this->route['componentFolder'] . DS . lcfirst($component) . '.' . $this->route['extensionView'];
         } else {
             return false;
         }

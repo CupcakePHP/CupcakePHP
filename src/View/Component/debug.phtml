@@ -1,0 +1,23 @@
+{##
+ # Simplesys: Sistemas simples e ponto.
+ #
+ # PHP version 5.5.12
+ #
+ # @category  Templates
+ # @package   Charisma
+ # @author    Ge Bender gesianbender@gmail.com
+ # @copyright 2014 - Simplesys
+ # @license   http://www.opensource.org/licenses/mit-license.php MIT License
+ # @link      http://php.simplesys.com.br
+ #}
+<div class="alert alert-<?php echo $alert; ?>">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+	<strong>
+	<?php
+	if (isset($backtrace)) {
+        echo $backtrace['file']; ?>
+	 # <?php echo $backtrace['line']; ?></strong><br>
+	 <?php } ?>
+    <?php echo ($message) ? $message . '<br/>' : false; ?>
+    <?php echo (isset($var) === true) ? var_dump($var) : false; ?>
+</div>

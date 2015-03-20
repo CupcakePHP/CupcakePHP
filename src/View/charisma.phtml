@@ -1,0 +1,32 @@
+<?php
+if ($v->hasAjax() === false) {
+    echo $headerCharisma;
+} ?>
+
+<div id="body-content">
+<?php echo $topCharisma; ?>
+    <div class="container-fluid">
+		<div class="row-fluid">
+
+<?php
+echo $sidebarCharisma;
+if ($v->hasNoVisibleElements() === false)	{ ?>
+                <div id="content" class="span10">
+            <!-- content starts -->
+<?php
+}
+echo $content;
+if ($v->hasNoVisibleElements() === false)	{ ?>
+            </div>
+            <!-- content ends -->
+<?php
+}
+?>
+        </div>
+    </div>
+</div>
+
+<?php
+if ($v->hasAjax() === false) {
+    echo $footerCharisma;
+}

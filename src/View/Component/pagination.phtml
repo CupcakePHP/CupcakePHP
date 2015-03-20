@@ -1,0 +1,11 @@
+<?php if ($lista->getPages() > 1) { ?>
+    <div class="pagination pagination-centered no-print">
+    	<ul>
+    	   <li class="<?php echo ($lista->getPage() == 1) ? "active" : false; ?>"><a href="<?php echo ($lista->getPage() > 1) ? $lista->getLinkOffset(($lista->getPage() - 1)) : '#'; ?>">Anterior</a></li>
+    		<?php for($i=$lista->getPaginateIni(); $i <= $lista->getPaginateEnd(); $i++) { ?>
+    			<li class="<?php echo ($lista->getPage() == $i) ? "active" : false; ?>"><a href="<?php echo (($lista->getPage() != $i)) ? $lista->getLinkOffset($i) : '#'; ?>"><?php echo $i; ?></a></li>
+    		<?php } ?>
+    		<li class="<?php echo (($lista->offset + $lista->limit) >= $lista->getTotal()) ? "active" : false; ?>"><a href="<?php echo (($lista->offset + $lista->limit) < $lista->getTotal()) ? $lista->getLinkOffset(($lista->getPage() + 1)) : '#'; ?>">Próxima</a></li>
+    	</ul>
+    </div>
+<?php } ?>

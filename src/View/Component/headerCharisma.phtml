@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+	<!--
+		Charisma v1.0.0
+
+		Copyright 2012 Muhammad Usman
+		Licensed under the Apache License v2.0
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		http://usman.it
+		http://twitter.com/halalit_usman
+	-->
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><?php echo $v->title(); ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta NAME="Author" CONTENT="GeBender, Muhammad Usman">
+	<meta name="description" content="Justa simple template">
+
+	<?php echo $v->getExtraHeaderA(); ?>
+
+	<!-- Charisma -->
+	<link id="bs-css" href="<?php echo $v->getWeb(); ?>charisma/css/bootstrap-classic.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
+		div   { page-break-inside:avoid; }
+
+		@media print
+		{
+		  div   { page-break-inside:avoid; }
+		  table { page-break-after:auto }
+		  tr    { page-break-inside:avoid; page-break-after:auto }
+		  div   { page-break-inside:avoid; }
+		  td    { page-break-inside:avoid; page-break-after:auto }
+		  thead { display:table-header-group }
+		  tfoot { display:table-footer-group }
+		}
+
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+	</style>
+
+	<link href="<?php echo $v->getWeb(); ?>charisma/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="<?php echo $v->getWeb(); ?>charisma/css/charisma-app.css" rel="stylesheet">
+	<link href="<?php echo $v->getWeb(); ?>charisma/css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/fullcalendar.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/fullcalendar.print.css' rel='stylesheet'  media='print'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/chosen.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/uniform.default.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/colorbox.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/jquery.cleditor.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/jquery.noty.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/noty_theme_default.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/jquery.iphone.toggle.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/opa-icons.css' rel='stylesheet'>
+	<link href='<?php echo $v->getWeb(); ?>charisma/css/uploadify.css' rel='stylesheet'>
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Simplesys -->
+	<link rel="stylesheet" href="<?php echo $v->getWeb() . 'css/simplesys.css?v=' . time(); ?>" type="text/css" media="screen" />
+	<link href="<?php echo $v->getWeb(); ?>charisma/css/loadingModal.css" rel=stylesheet type=text/css>
+
+	<?php echo $v->getExtraHeaderB(); ?>
+
+	<link rel="stylesheet" href="<?php echo $v->getWeb(); ?>charisma/css/lightbox.css" type="text/css" media="screen" />
+	<link rel="shortcut icon" href="<?php echo $v->getWeb(); ?>charisma/server/php/files/favicon.ico">
+	<link rel="apple-touch-icon" href="http://i.imgur.com/WZvsb.png" />
+	<script type="text/javascript" src="<?php echo $v->getWeb(); ?>js/jquery/jquery-2.1.1.min.js"></script>
+
+	<link rel="shortcut icon" href="<?php echo $v->getWeb(); ?>charisma/img/favicon.ico">
+</head>
+
+<body>
+
+	<div class="modal hide fade" id="alertDefault">
+		<div class="modal-header" style="padding-bottom: 55px;padding-top: 30px;">
+			<button type="button" class="close" data-dismiss="modal" style="margin-top: -28px;">×</button>
+			<i class="icon32 icon-red icon-alert" style="float: left;margin-right: 15px;"></i><h3 class="left" id="alertDefaultBody">Aviso importante</h3>
+		</div>
+		<div class="modal-footer">
+			<span id="alertBtnAlt" class="left"></span>
+			<a href="#" class="btn" id="dismiss-simplesys-alert" data-dismiss="modal">Fechar</a>
+		</div>
+	</div>
+

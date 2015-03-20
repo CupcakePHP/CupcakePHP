@@ -39,8 +39,11 @@ class Config
                 )
         );
 
-         $cupcakeAppConfig = Apps\Config::load();
-         return array_merge($ambientConfigs['default'], $ambientConfigs[getenv('AMBIENT')], $cupcakeAppConfig['default'], $cupcakeAppConfig[getenv('AMBIENT')]);
+         class_exists('Apps\Config') ? $cupcakeAppConfig = Apps\Config::load() : $cupcakeAppConfig = array('default' => array(), 'development' => array());
+         return array_merge($ambientConfigs['default'],
+         		 $ambientConfigs[getenv('AMBIENT')], 
+         		$cupcakeAppConfig['default'], 
+         		$cupcakeAppConfig[getenv('AMBIENT')]);
 
     }
 
@@ -52,7 +55,7 @@ class Config
      */
     public static function route()
     {
-        $cupcakeAppConfig = Apps\Config::load();
+        class_exists('Apps\Config') ? $cupcakeAppConfig = Apps\Config::load() : $cupcakeAppConfig = array('route' => array());
 
         return array_merge(array(
                 'appName' => 'Cupcake',

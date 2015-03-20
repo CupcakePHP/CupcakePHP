@@ -1,0 +1,41 @@
+{##
+ # Simplesys: Sistemas simples e ponto.
+ #
+ # PHP version 5.5.12
+ #
+ # @category  Templates
+ # @package   Charisma
+ # @author    Ge Bender gesianbender@gmail.com
+ # @copyright 2014 - Simplesys
+ # @license   http://www.opensource.org/licenses/mit-license.php MIT License
+ # @link      http://php.simplesys.com.br
+ #}
+<div class="alert alert-info">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+	<h4>Radar! - <i>Onde sou, quem estou...</i></h4>
+	<table class="table table-bordered" style="background: white;">
+    	<thead>
+    	   <tr>
+        	   <th>Folder</th>
+        	   <th>App</th>
+        	   <th>Controller</th>
+        	   <th>Action</th>
+        	   <th>View folder</th>
+        	   <th>View file</th>
+        	   <th>Arguments</th>
+            </tr>
+    	</thead>
+        <tbody>
+            <tr>
+    	        <td><?php echo Simplifica::$config['folder']; ?></td>
+        	    <td><?php echo Simplifica::$app; ?></td>
+        	    <td><?php echo Simplifica::$controller; ?></td>
+        	    <td><?php echo Simplifica::$action; ?></td>
+        	    <td><?php echo Simplifica::$viewFolder; ?></td>
+        	    <td><?php echo Simplifica::$view; ?></td>
+        	    <td><?php echo var_dump(Simplifica::$arguments); ?></td>
+            </tr>
+    	</tbody>
+	</table>
+
+</div>

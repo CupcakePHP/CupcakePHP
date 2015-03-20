@@ -1,0 +1,40 @@
+<?php if ($v->hasNoVisibleElements() === false)	{ ?>
+	<!-- topbar starts -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand load-modal" style="width: 230px;" href="<?php echo $v->getIndex(); ?>"> <img src="<?php echo $v->getLogo(); ?>"/> <span><?php echo $v->getNomeSistema(); ?></span></a>
+
+				<!-- user dropdown starts -->
+				<div class="btn-group pull-right" >
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-user"></i><span class="hidden-phone"> <?php echo ($assinante instanceof Assinantes) ? $assinante->getFantasia() : $assinante; ?></span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Editar perfil</a></li>
+						<li class="divider"></li>
+						<li><a class="ajax-nav" href="#">Sair do sistema</a></li>
+					</ul>
+				</div>
+				<!-- user dropdown ends -->
+
+				<div class="top-nav nav-collapse">
+					<ul class="nav" style="max-width: 330px;margin: auto;float: none;">
+						<li>
+							<form method="get" class="pull-left" id="busca-topo" action="<?php echo $index; ?>clientes/busca/" style="margin-bottom: 10px;">
+								<input name="chave" <?php if(isset($_GET["chave"])) { ?>value="<?php echo $_GET["chave"]; ?>"<?php } ?> id="busca" required="required" class="input-xlarge" placeholder="Busca simples" style="margin-bottom: 2px;" size="12" type="text"><button style="border-radius: 0 3px 3px 0;margin-left: -1px;" id="btn-busca-topo" class="btn" type="button"><i class="icon-search"></i></button>
+							</form>
+						</li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	<!-- topbar ends -->
+	<?php } ?>

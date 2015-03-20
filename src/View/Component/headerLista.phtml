@@ -1,0 +1,10 @@
+<span class="right" style="font-weight: normal; font-size: 13px;">Total: <b><?php echo $lista->getTotal(); ?></b> registros,
+<select id="select-limit" style="width: 70px;">
+  <option <?php if ($lista->limit === '10') echo "selected"; ?> value="<?php echo $lista->getLinkLimit(5); ?>">5</option>
+  <option <?php if ($lista->limit === '10') echo "selected"; ?> value="<?php echo $lista->getLinkLimit(10); ?>">10</option>
+  <option <?php if ($lista->limit === '25') echo "selected"; ?> value="<?php echo $lista->getLinkLimit(25); ?>">25</option>
+  <option <?php if ($lista->limit === '50') echo "selected"; ?> value="<?php echo $lista->getLinkLimit(50); ?>">50</option>
+  <option <?php if ($lista->limit === '50') echo "selected"; ?> value="<?php echo $lista->getLinkLimit(100); ?>">100</option>
+  <option <?php if ($lista->limit === (string) $lista->getTotal()) echo "selected"; ?> value="<?php echo $lista->getLinkLimit($lista->getTotal()); ?>">Todos</option>
+</select> por página
+</span>

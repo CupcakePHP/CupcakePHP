@@ -10,7 +10,7 @@
  * @link    http://cupcake.simplesys.com.br
  */
 header('Content-Type: text/html; charset=utf-8');
-$autoload = require 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+$autoload = require dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,6 +74,7 @@ $cupcake->match('{url}', function (Request $request) use ($cupcake) {
 
     $loader = new FilesystemLoader(array(
             dirname(dirname(__FILE__)) . DS . 'View' . DS . '%name%',
+            dirname(dirname(__FILE__)) . DS . 'src' . DS . 'View' . DS . '%name%',
             dirname(dirname(__FILE__)) . DS . $cupcake['route']['appsFolder'] . DS . $cupcake['route']['appName'] . DS . $cupcake['route']['viewFolder'] . DS . '%name%'
     ));
     $templateNameParser = new TemplateNameParser();

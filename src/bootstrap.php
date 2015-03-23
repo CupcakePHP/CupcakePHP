@@ -10,7 +10,7 @@
  * @link    http://cupcake.simplesys.com.br
  */
 header('Content-Type: text/html; charset=utf-8');
-$autoload = require dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+$autoload = require dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'autoload.php';
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\PhpEngine;

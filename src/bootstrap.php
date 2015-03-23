@@ -60,9 +60,9 @@ $cupcake->match('{url}', function (Request $request) use ($cupcake) {
     $controller = new $controllerPath($cupcake);
     $action = $cupcake['route']['action'];
     $loader = new FilesystemLoader(array(
-            dirname(dirname(__FILE__)) . DS . 'View' . DS . '%name%',
-            dirname(dirname(__FILE__)) . DS . 'src' . DS . 'View' . DS . '%name%',
-            dirname(dirname(__FILE__)) . DS . $cupcake['route']['appsFolder'] . DS . $cupcake['route']['appName'] . DS . $cupcake['route']['viewFolder'] . DS . '%name%'
+            dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DS . 'View' . DS . '%name%',
+            dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DS . $cupcake['route']['appsFolder'] . DS . $cupcake['route']['appName'] . DS . $cupcake['route']['viewFolder'] . DS . '%name%',
+       		dirname(dirname(__FILE__)) . DS . 'src' . DS . 'View' . DS . '%name%'
     ));
     $templateNameParser = new TemplateNameParser();
     $cupcake['Templating'] = new PhpEngine($templateNameParser, $loader);

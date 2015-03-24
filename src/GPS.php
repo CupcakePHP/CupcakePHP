@@ -192,12 +192,10 @@ class GPS
      */
     public function getLayoutClassName($layout)
     {
-        if ($this->fs->classExists('Layout\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
-            return 'Layout\\' . $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout;
+        if ($this->fs->classExists($this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout) === true) {
+            return $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['layoutFolder'] . '\\' . $layout;
         } else if ($this->fs->classExists('Layout\\' . $layout) === true) {
             return 'Layout\\' . $layout;
-        } else {
-            return false;
         }
 
     }

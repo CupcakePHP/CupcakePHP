@@ -136,7 +136,7 @@ class GPS
      */
     public function defineController()
     {
-        if ($this->fs->exists(dirname(dirname(__FILE__)) . DS . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['controllerFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . 'Controller.php') === true) {
+        if ($this->fs->exists(dirname(dirname(__FILE__)) . DS . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['controllerFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . 'Controller.php') === true || $this->fs->exists(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DS . $this->route['appsFolder'] . DS . $this->route['appName'] . DS . $this->route['controllerFolder'] . DS . ucfirst($this->urlToCamel($this->url[0])) . 'Controller.php') === true) {
             $this->route['controller'] = $this->route['appsFolder'] . '\\' . $this->route['appName'] . '\\' . $this->route['controllerFolder'] . '\\' . ucfirst($this->urlToCamel($this->url[0])) . 'Controller';
         }
         $this->shiftUrl();
